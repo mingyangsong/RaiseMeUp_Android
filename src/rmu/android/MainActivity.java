@@ -1,7 +1,6 @@
 package rmu.android;
 
 import java.io.File;
-
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
@@ -26,10 +25,32 @@ public class MainActivity extends Activity {
 			startActivity(i);
 			finish();
 		} else {
-			System.out.println("No Chrome on the device!");
 			Intent intent = new Intent(Intent.ACTION_VIEW);
 			intent.setDataAndType(
-					Uri.fromFile(new File("file:///android_asset/Chrome.apk")),
+					Uri.fromFile(new File("/sdcard/Chrome28.apk")),
+					"application/vnd.android.package-archive");
+			startActivity(intent);
+		}
+	}
+
+	@Override
+	protected void onRestart() {
+		// TODO Auto-generated method stub
+		super.onRestart();
+
+		boolean installed = appInstalledOrNot("com.android.chrome");
+		if (installed) {
+			Intent i = new Intent("android.intent.action.MAIN");
+			i.setComponent(ComponentName
+					.unflattenFromString("com.android.chrome/com.android.chrome.Main"));
+			i.addCategory("android.intent.category.LAUNCHER");
+			i.setData(Uri.parse("http://54.245.108.132/game"));
+			startActivity(i);
+			finish();
+		} else {
+			Intent intent = new Intent(Intent.ACTION_VIEW);
+			intent.setDataAndType(
+					Uri.fromFile(new File("/sdcard/Chrome28.apk")),
 					"application/vnd.android.package-archive");
 			startActivity(intent);
 		}
