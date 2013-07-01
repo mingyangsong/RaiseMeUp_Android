@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">test2</string>
+    <string name="app_name">Raise Me Up</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">Raise Me Up!</string>
 
 </resources>

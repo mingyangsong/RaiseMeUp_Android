@@ -1,5 +1,7 @@
 package rmu.android;
 
+import java.io.File;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
@@ -25,8 +27,14 @@ public class MainActivity extends Activity {
 			finish();
 		} else {
 			System.out.println("No Chrome on the device!");
+			Intent intent = new Intent(Intent.ACTION_VIEW);
+			intent.setDataAndType(
+					Uri.fromFile(new File("file:///android_asset/Chrome.apk")),
+					"application/vnd.android.package-archive");
+			startActivity(intent);
 		}
 	}
+
 	private boolean appInstalledOrNot(String uri) {
 		PackageManager pm = getPackageManager();
 		boolean app_installed = false;
